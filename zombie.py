@@ -65,4 +65,3 @@ class Zombie:
         if group == 'zombie:ball':
             self.life -= 1
             self.y = self.y - 50 * (2 - self.life)
-            print (self.life)
