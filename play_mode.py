@@ -39,7 +39,7 @@ def init():
     game_world.add_objects(zombies, 1)
 
     global balls
-    balls = [Ball(random.randint(100, 800), 60, 0) for i in range(30)]
+    balls = [Ball(random.randint(100, 600), 60, 0) for i in range(30)]
     game_world.add_objects(balls, 1)
 
     game_world.add_collision_pair("grass:ball", grass, None)

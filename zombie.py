@@ -34,8 +34,13 @@ class Zombie:
         self.x, self.y = random.randint(MIN_X, MAX_X), 150
         self.frame = random.randint(0, 9)
         self.dir = random.choice([-1, 1])
+        self.life = 2
 
     def update(self):
+        if self.life <= 0:
+            game_world.remove_object(self)
+            game_world.remove_collision_object(self)
+        
         dt = game_framework.frame_time
         self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * dt) % FRAMES_PER_ACTION
         self.x += self.dir * RUN_SPEED_PPS * dt
@@ -58,4 +63,5 @@ class Zombie:
 
     def handle_collision(self, group, other):
         if group == 'zombie:ball':
-            print ('Ouch\n')
+            self.life -= 1
+            print (self.life)
