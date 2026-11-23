@@ -7,6 +7,7 @@ from ball import Ball
 from zombie import Zombie
 import random
 
+
 boy = None
 
 
@@ -33,16 +34,22 @@ def init():
     grass = Grass()
     game_world.add_object(grass, 0)
 
+    global zombies
+    zombies = [Zombie() for i in range(4)]
+    game_world.add_objects(zombies, 1)
+
     global balls
-    balls = [Ball(random.randint(100, 1700), 60, 0) for i in range(30)]
+    balls = [Ball(random.randint(100, 800), 60, 0) for i in range(30)]
     game_world.add_objects(balls, 1)
+
     game_world.add_collision_pair("grass:ball", grass, None)
     game_world.add_collision_pair("boy:ball", boy, None)
+    for zombie in zombies:
+        game_world.add_collision_pair("zombies:ball", zombie, None)
     for ball in balls:
         game_world.add_collision_pair("boy:ball", None, ball)
+        game_world.add_collision_pair("zombies:ball", None, ball)
     
-    zombies = [Zombie() for _ in range(4)]
-    game_world.add_objects(zombies, 1)
 
 
 def pause():
