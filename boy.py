@@ -194,6 +194,6 @@ class Boy:
         if group == 'boy:ball':
             self.ball_count += 1
         elif group == 'boy:zombie':
-            print('Oh No\n')
+            game_framework.running = False
 
     
